@@ -32,6 +32,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/derynboscariol/Desktop/School/HTTP5125BackEnd/Projects/School/School/Views/Student/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3R1ZGVudC9MaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/derynboscariol/Desktop/School/HTTP5125BackEnd/Projects/School/School/Views/Student/Show.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3R1ZGVudC9TaG93LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/derynboscariol/Desktop/School/HTTP5125BackEnd/Projects/School/School/Views/Teacher/List.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGVhY2hlci9MaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

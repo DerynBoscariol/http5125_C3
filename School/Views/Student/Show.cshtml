@@ -1,0 +1,20 @@
+@model School.Models.Student
+@{
+    ViewBag.Title = "Show";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Show Student</title>
+</head>
+<body>
+    <h2>@Model.FirstName @Model.LastName</h2>
+    <p>Enrolled: @Model.EnrollDate</p>
+    <p>Student Number: @Model.StudentNumber</p>
+
+
+</body>
+</html>

@@ -10,7 +10,7 @@ namespace School.Models
 		public string? FirstName { get; set; }
 		public string? LastName { get; set; }
 		public string? EmployeeNumber { get; set; }
-		public DateTime HireDate { get; set; }
+		public DateTime? HireDate { get; set; }
 		public decimal Salary { get; set; }
 	}
 }
