@@ -1,0 +1,38 @@
+﻿<Properties StartupConfiguration="{BEBDB97F-70B0-4BB3-AF8A-644E77AE4988}|http">
+  <MonoDevelop.Ide.ItemProperties.School PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="School/Views/Teacher/List.cshtml">
+    <Files>
+      <File FileName="School/Models/SchoolDbContext.cs" Line="40" Column="73" />
+      <File FileName="School/Controllers/TeacherDataController.cs" Line="94" Column="38" />
+      <File FileName="School/Controllers/TeacherController.cs" Line="36" Column="42" />
+      <File FileName="School/Models/Teacher.cs" Line="4" Column="18" />
+      <File FileName="School/Views/Teacher/List.cshtml" Line="24" Column="8" />
+      <File FileName="School/Views/Teacher/Show.cshtml" Line="21" Column="8" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="School" expanded="True">
+            <Node name="School">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Views">
+                <Node name="Teacher" expanded="True">
+                  <Node name="List.cshtml" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+</Properties>

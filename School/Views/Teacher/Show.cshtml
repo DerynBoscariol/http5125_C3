@@ -1,0 +1,21 @@
+@model School.Models.Teacher
+@{
+    ViewBag.Title = "Show";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Show</title>
+</head>
+<body>
+    <h2>@Model.FirstName @Model.LastName</h2>
+    <p>Hired: @Model.HireDate</p>
+    <p>Employee Number: @Model.EmployeeNumber</p>
+    <p>Salary: $@Model.Salary</p>
+
+
+</body>
+</html>
