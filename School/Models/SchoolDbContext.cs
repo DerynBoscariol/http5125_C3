@@ -28,7 +28,7 @@ namespace School.Models
         }
         //Method to connect to database
         /// <summary>
-        /// Returns a connection to the school databse
+        /// Returns a connection to the school database
         /// </summary>
         /// <example>
         /// private SchoolDbContext School = new SchoolDbContext();

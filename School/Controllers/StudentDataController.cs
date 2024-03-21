@@ -27,8 +27,8 @@ namespace School.Controllers
         /// A list of data about the teachers (teacherid, first names and last names, employeenumber, hiredate, and salary)
         /// </returns>
         [HttpGet]
-        [Route("api/StudentData/ListStudents")]
-        public List<Student> ListStudents()
+        [Route("api/StudentData/ListStudents/{SearchKey}")]
+        public List<Student> ListStudents(string SearchKey)
         {
             //Creating an instance of the database connection
             MySqlConnection Connection = School.AccessDatabase();
@@ -40,7 +40,11 @@ namespace School.Controllers
             MySqlCommand command = Connection.CreateCommand();
 
             //sql query
-            command.CommandText = "Select * from students";
+            string query = "Select * from students where studentfname like @searchkey or studentlname like @searchkey";
+
+            command.CommandText = query;
+            command.Parameters.AddWithValue("@searchkey", "%" + SearchKey + "%");
+            command.Prepare();
 
             //grouping results data into a variable
             MySqlDataReader DataResults = command.ExecuteReader();

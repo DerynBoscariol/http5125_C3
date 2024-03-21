@@ -18,5 +18,40 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: #CAEBF2;
+}
+h3 {
+    font-weight: 300;
+    font-size:1em;
+}
+
+button:hover {
+    color: #EFEFEF;
+    background-color: black;
+}
+
+button {
+    border-style:solid;
+    border-color: black;
+    border-radius: 10px;
+}
+
+main {
+    background-color: #FFFAD3;
+    padding: 2em 5em 5em 5em;
+    border-style: none;
+    border-radius: 15px;
+}
+
+header {
+    background-color: #CDCBD9!important;
+}
+
+footer {
+    background-color: #CDCBD9;
+}
+
+#content-div header {
+    background-color: pink;
 }

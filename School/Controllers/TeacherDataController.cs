@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using School.Models;
 using MySql.Data.MySqlClient;
 using System.Reflection.Metadata;
+using System.Diagnostics;
 
 
 namespace School.Controllers
@@ -22,13 +23,15 @@ namespace School.Controllers
         /// <summary>
         /// Returns a list of teachers and their data from the school database
         /// </summary>
-        /// <example>GET api/TeacherData/ListTeachers</example>
+        
         /// <returns>
         /// A list of data about the teachers (teacherid, first names and last names, employeenumber, hiredate, and salary)
         /// </returns>
+        /// <param name="SearchKey"></param>
+        /// <example>GET api/TeacherData/ListTeachers</example>
         [HttpGet]
-        [Route("api/TeacherData/ListTeachers")]
-        public List<Teacher> ListTeachers()
+        [Route("api/TeacherData/ListTeachers/{SearchKey}")]
+        public List<Teacher> ListTeachers(string SearchKey)
         {
             //Creating an instance of the database connection
             MySqlConnection Connection = School.AccessDatabase();
@@ -40,7 +43,11 @@ namespace School.Controllers
             MySqlCommand command = Connection.CreateCommand();
 
             //sql query
-            command.CommandText = "Select * from teachers";
+            string query = "Select * from teachers where teacherfname like @searchkey or teacherlname like @searchkey";
+
+            command.CommandText = query;
+            command.Parameters.AddWithValue("@searchkey","%"+SearchKey+"%");
+            command.Prepare();
 
             //grouping results data into a variable
             MySqlDataReader DataResults = command.ExecuteReader();

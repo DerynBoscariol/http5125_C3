@@ -18,12 +18,13 @@ namespace School.Controllers
         }
 
         //GET: localhost:xxxx/Student/List -->dynamically rendered webpage
-        public ActionResult List()
+        [HttpGet]
+        public ActionResult List(string SearchKey)
         {
 
             // Navigating to /views/Student/list.cshtml
             StudentDataController Controller = new StudentDataController();
-            IEnumerable<Student> Students = Controller.ListStudents();
+            IEnumerable<Student> Students = Controller.ListStudents(SearchKey);
 
             return View(Students);
         }

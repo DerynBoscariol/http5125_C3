@@ -17,13 +17,14 @@ namespace School.Controllers
             return View();
         }
 
-        //GET: localhost:xxxx/Teacher/List -->dynamically rendered webpage
-        public ActionResult List()
+        //GET: localhost:xxxx/Teacher/List?SearchKey={key} -->dynamically rendered webpage
+        [HttpGet]
+        public ActionResult List(string SearchKey)
         {
            
             // Navigating to /views/teacher/list.cshtml
             TeacherDataController Controller = new TeacherDataController();
-            IEnumerable<Teacher> Teachers = Controller.ListTeachers();
+            IEnumerable<Teacher> Teachers = Controller.ListTeachers(SearchKey);
             
             return View(Teachers);
         }
@@ -39,8 +40,3 @@ namespace School.Controllers
     }
 }
 
-
-// call the make hire method -- Hiring is a new instance of the hirecontroller
-            //HireController Hiring = new HireController();
-            //Teacher NewHire = Hiring.NewHire(TeacherId, TeacherFirstName, TeacherLastName, EmployeeNumber, HireDate, TeacherSalary);
-            // return View(NewHire);

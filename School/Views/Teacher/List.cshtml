@@ -8,15 +8,21 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>List</title>
+    <title>Teacher List</title>
 </head>
 <body>
     <h2>Meet Our @DateTime.Now.Year Teachers!</h2>
+    <h3>Search by first name or last name:</h3>
+    <form action="/Teacher/List" method="GET">
+        <input type="text" name="SearchKey" />
+        <button>Search</button>
+    </form>
+
     @{
-        foreach(School.Models.Teacher Teacher in Model)
-{
+        foreach (School.Models.Teacher Teacher in Model)
+        {
             <div><a href="/Teacher/Show/@Teacher.TeacherId">@Teacher.FirstName  @Teacher.LastName</a></div>
-}
+        }
 
     }
 
