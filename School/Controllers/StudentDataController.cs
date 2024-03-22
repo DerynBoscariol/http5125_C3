@@ -47,7 +47,7 @@ namespace School.Controllers
             MySqlCommand command = Connection.CreateCommand();
 
             //sql query
-            string query = "Select * from students where studentfname like @searchkey or studentlname like @searchkey";
+            string query = "Select * from students where studentfname like @searchkey or studentlname like @searchkey ";
             command.CommandText = query;
 
             //altering the SearchKey variable so that no character in the

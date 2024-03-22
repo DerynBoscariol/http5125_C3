@@ -34,8 +34,8 @@ namespace School.Controllers
         /// all the students names as links
         /// </example>
         /// <example>
-        /// GET: localhost:xxxx/Student/List?SearchKey=Roy--> the search bar
-        /// and the name Roy Davidson as a link to
+        /// GET: localhost:xxxx/Student/List?SearchKey=Roy--> web page
+        /// displaying the search bar and the name Roy Davidson as a link to
         /// localhost:xxxx/Student/Show/14
         /// </example>
         [HttpGet]
@@ -51,15 +51,37 @@ namespace School.Controllers
             IEnumerable<Student> Students = Controller.ListStudents(SearchKey);
 
             //creating a ViewResultObject and rendering it based on the
-            //StudentDataController and Student model
+            //functionality in StudentDataController and the Student model
             return View(Students);
         }
-
+        /// <summary>
+        /// This method navigates to and displays a rendered webpage show the
+        /// view of a specific student based on studentId
+        /// </summary>
+        /// <param name="id">An integer representing the unique studentId number
+        /// associated with each student</param>
+        /// <returns>
+        /// A dynamically rendered webpage (/views/student/show.cshtml)
+        /// displaying information(firstName, lastName, studentId, enrollDate,
+        /// studentNumber) about a specific student based on studentId
+        /// </returns>
+        /// <example>
+        /// GET: localhost:xxxx/Student/Show/7 --> web page displaying Jason
+        /// Freeman Student Id: 7 Enrolled: 8/16/2018 12:00:00 AM
+        /// Student Number: N1694
+        /// </example>
         public ActionResult Show(int id)
         {
+            //creating a new instance of the StudentDataController
             StudentDataController Controller = new StudentDataController();
+
+            //connecting the Student model to the find student functionality in
+            //the StudentDataController and assigning it to the variable
+            //SelectedStudent
             Student SelectedStudent = Controller.FindStudent(id);
-            
+
+            //creating a ViewResultObject and rendering it based on the
+            //functionality the StudentDataController and the Student model
             return View(SelectedStudent);
         }
 
