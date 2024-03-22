@@ -18,14 +18,21 @@ namespace School.Controllers
         // Creating a context class to access database
         private SchoolDbContext School = new SchoolDbContext();
 
-        //This Controller accesses the teachers table in the school database
-        /// <summary>
-        /// Returns a list of teachers and their data from the school database
-        /// </summary>
-        /// <example>GET api/TeacherData/ListTeachers</example>
+        ///<summary>
+        ///This method displays information(studentId, firstName, lastName,
+        ///studentNumber, and enrollDate) about one or many student(s)
+        ///based on the string entered
+        ///</summary>
         /// <returns>
-        /// A list of data about the teachers (teacherid, first names and last names, employeenumber, hiredate, and salary)
+        /// Information about the student(s) matching the search key
         /// </returns>
+        /// <param name="SearchKey">The term the user wants to search for as a
+        /// string</param>
+        /// <example>GET api/StudentData/ListStudents/Ma--> [{"studentId":4,
+        /// "firstName":"Mario","lastName":"English","studentNumber":"N1686",
+        /// "enrollDate":"7/3/2018 12:00:00 AM"},{"studentId":7,"firstName":
+        /// "Jason","lastName":"Freeman","studentNumber":"N1694","enrollDate":
+        /// "8/16/2018 12:00:00 AM"}]</example>
         [HttpGet]
         [Route("api/StudentData/ListStudents/{SearchKey}")]
         public List<Student> ListStudents(string SearchKey)
@@ -41,8 +48,10 @@ namespace School.Controllers
 
             //sql query
             string query = "Select * from students where studentfname like @searchkey or studentlname like @searchkey";
-
             command.CommandText = query;
+
+            //altering the SearchKey variable so that no character in the
+            //SearchKey will be mistaken as part of the query
             command.Parameters.AddWithValue("@searchkey", "%" + SearchKey + "%");
             command.Prepare();
 
@@ -66,14 +75,17 @@ namespace School.Controllers
                 //getting the date the teachers were hired
                 string? EnrollDate = Convert.ToString(DataResults["enroldate"]);
 
+                //creating a new instance of the Student model
                 Student NewStudent = new Student();
+
+                //assigning variables to the properties of the new Student model
                 NewStudent.FirstName = FirstName;
                 NewStudent.LastName = LastName;
                 NewStudent.StudentId = StudentId;
                 NewStudent.StudentNumber = StudentNumber;
                 NewStudent.EnrollDate = EnrollDate;
 
-
+                //adding the newStudent object(s) to the list
                 StudentData.Add(NewStudent);
             }
 
@@ -81,23 +93,30 @@ namespace School.Controllers
             Connection.Close();
 
             //returning the list of all the data
-
             return StudentData;
         }
 
 
 
-        //GOAL: Method that recives a TeacherId and returns info
-        /// <summary>
-        /// 
+        ///<summary>
+        /// This method recieves an id number and will display information
+        /// (studentId, firstName, lastName, studentNumber, and enrollDate) on
+        /// a student based on that id
         /// </summary>
-        /// <example>localhost:xxxx/api/teacherdata/findteacher/2--> {"teacherId":2,"firstName":"Caitlin","lastName":"Cummings","employeeNumber":"T381","hireDate":"2014-06-10T00:00:00","salary":62.77}</example>
-        /// <param name="id"></param>
-        /// <returns>A new instance of Teacher with the information about the teacher based in id input</returns>
+        /// <example>
+        /// GET localhost:xxxx/api/studentdata/findstudent/8--> {"studentId":8,
+        /// "firstName":"Nicole","lastName":"Armstrong","studentNumber":"N1698",
+        /// "enrollDate":"7/10/2018 12:00:00 AM"}
+        /// </example>
+        /// <param name="id">An integer representing the id number of the
+        /// student being searched for</param>
+        /// <returns>A new instance of the Student model with the information
+        /// about the student based on id input</returns>
         [HttpGet]
         [Route("api/studentdata/findstudent/{id}")]
         public Student FindStudent(int id)
         {
+            //creating a new instance of the Student model
             Student SelectedStudent = new Student();
 
             //Creating an instance of the database connection
@@ -116,21 +135,22 @@ namespace School.Controllers
             MySqlDataReader StudentResult = command.ExecuteReader();
 
             //creating a while loop to read through sql results
-
             while (StudentResult.Read())
             {
                 //accessing information through database column names
-                //getting the teachers id number
+                //getting the students id number
                 int StudentId = Convert.ToInt32(StudentResult["studentid"]);
-                //getting the teachers first name
+                //getting the students first name
                 string? FirstName = StudentResult["studentfname"].ToString();
-                //getting the teachers last name
+                //getting the students last name
                 string? LastName = StudentResult["studentlname"].ToString();
-                //getting the teachers employee number
+                //getting the students student number
                 string? StudentNumber = StudentResult["studentnumber"].ToString();
-                //getting the date the teacher was hired
+                //getting the date the student was enrolled
                 string? EnrollDate = Convert.ToString(StudentResult["enroldate"]);
 
+                //assigning the variables to the corresponding property of the
+                //Student model
                 SelectedStudent.StudentId = StudentId;
                 SelectedStudent.FirstName = FirstName;
                 SelectedStudent.LastName = LastName;
@@ -140,6 +160,8 @@ namespace School.Controllers
             //closing database server connection
             Connection.Close();
 
+            //returning the new instance of the Student model populated with the
+            //information from the student being searched for
             return SelectedStudent;
         }
     }

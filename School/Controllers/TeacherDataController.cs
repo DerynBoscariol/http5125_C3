@@ -19,16 +19,22 @@ namespace School.Controllers
         // Creating a context class to access database
         private SchoolDbContext School = new SchoolDbContext();
 
-        //This Controller accesses the teachers table in the school database
-        /// <summary>
-        /// Returns a list of teachers and their data from the school database
-        /// </summary>
-        
+
+        ///<summary>
+        ///This method displays information(teacherId, firstName, lastName,
+        ///employeeNumber, hireDate, and salary) about one or many teacher(s)
+        ///based on the string entered
+        ///</summary>
         /// <returns>
-        /// A list of data about the teachers (teacherid, first names and last names, employeenumber, hiredate, and salary)
+        /// Information about the teacher(s) matching the search key
         /// </returns>
-        /// <param name="SearchKey"></param>
-        /// <example>GET api/TeacherData/ListTeachers</example>
+        /// <param name="SearchKey">The term the user wants to search for as a
+        /// string</param>
+        /// <example>GET api/TeacherData/ListTeachers/Lin --> [{"teacherId":2,
+        /// "firstName":"Caitlin","lastName":"Cummings","employeeNumber":"T381",
+        /// "hireDate":"2014-06-10T00:00:00","salary":62.77},{"teacherId":3,
+        /// "firstName":"Linda","lastName":"Chan","employeeNumber":"T382",
+        /// "hireDate":"2015-08-22T00:00:00","salary":60.22}]</example>
         [HttpGet]
         [Route("api/TeacherData/ListTeachers/{SearchKey}")]
         public List<Teacher> ListTeachers(string SearchKey)
@@ -44,8 +50,10 @@ namespace School.Controllers
 
             //sql query
             string query = "Select * from teachers where teacherfname like @searchkey or teacherlname like @searchkey";
-
             command.CommandText = query;
+
+            //altering the SearchKey variable so that no character in the
+            //SearchKey will be mistaken as part of the query
             command.Parameters.AddWithValue("@searchkey","%"+SearchKey+"%");
             command.Prepare();
 
@@ -71,7 +79,10 @@ namespace School.Controllers
                 //getting the teachers salaries
                 decimal TeacherSalary = Convert.ToDecimal(DataResults["salary"]);
 
+                //creating a new instance of the Teacher model
                 Teacher NewTeacher = new Teacher();
+
+                //assiging variables to the properties of the new Teacher model
                 NewTeacher.FirstName = FirstName;
                 NewTeacher.LastName = LastName;
                 NewTeacher.TeacherId = TeacherId;
@@ -79,7 +90,7 @@ namespace School.Controllers
                 NewTeacher.HireDate = HireDate;
                 NewTeacher.Salary = TeacherSalary;
 
-
+                //adding the newTeacher object(s) to the list
                 TeacherData.Add(NewTeacher);
             }
 
@@ -87,23 +98,29 @@ namespace School.Controllers
             Connection.Close();
 
             //returning the list of all the data
-            
             return TeacherData;
         }
 
 
-
-        //GOAL: Method that recives a TeacherId and returns info
         /// <summary>
-        /// 
+        /// This method recieves an id number and will display information
+        /// (teacherId, firstName, lastName, employeeNumber, hireDate, and
+        /// salary) on a teacher based on that id
         /// </summary>
-        /// <example>localhost:xxxx/api/teacherdata/findteacher/2--> {"teacherId":2,"firstName":"Caitlin","lastName":"Cummings","employeeNumber":"T381","hireDate":"2014-06-10T00:00:00","salary":62.77}</example>
-        /// <param name="id"></param>
-        /// <returns>A new instance of Teacher with the information about the teacher based in id input</returns>
+        /// <example>
+        /// GET localhost:xxxx/api/teacherdata/findteacher/6--> {"teacherId":6,
+        /// "firstName":"Thomas","lastName":"Hawkins","employeeNumber":"T393",
+        /// "hireDate":"2016-08-10T00:00:00","salary":54.45}
+        /// </example>
+        /// <param name="id">An integer representing the id number of the
+        /// teacher being searched for</param>
+        /// <returns>A new instance of Teacher with the information about the
+        /// teacher based on id input</returns>
         [HttpGet]
         [Route("api/teacherdata/findteacher/{id}")]
         public Teacher FindTeacher(int id)
         {
+            //creating a new instance of the Teacher model
             Teacher SelectedTeacher = new Teacher();
 
             //Creating an instance of the database connection
@@ -125,7 +142,7 @@ namespace School.Controllers
 
             while (TeacherResult.Read())
             {
-                //accessing information through database column names
+                //accessing information through database column names:
                 //getting the teachers id number
                 int TeacherId = Convert.ToInt32(TeacherResult["teacherid"]);
                 //getting the teachers first name
@@ -139,6 +156,7 @@ namespace School.Controllers
                 //getting the teachers salary
                 decimal TeacherSalary = Convert.ToDecimal(TeacherResult["salary"]);
 
+                //assigning the variables to the properties of the Teacher model
                 SelectedTeacher.TeacherId = TeacherId;
                 SelectedTeacher.FirstName = FirstName;
                 SelectedTeacher.LastName = LastName;
@@ -149,6 +167,8 @@ namespace School.Controllers
             //closing database server connection
             Connection.Close();
 
+            //returning an instance of the Teacher model populated with the data
+            //from the teacher searched for
             return SelectedTeacher;
         }
     }
