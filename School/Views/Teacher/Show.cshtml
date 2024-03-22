@@ -12,10 +12,12 @@
 </head>
 <body>
     <h2>@Model.FirstName @Model.LastName</h2>
-    <p>Hired: @Model.HireDate</p>
-    <p>Employee Number: @Model.EmployeeNumber</p>
-    <p>Salary: $@Model.Salary</p>
-
+    <div class="show-info">
+        <p>Hired: @Model.HireDate</p>
+        <p>Employee Number: @Model.EmployeeNumber</p>
+        <p>Salary: $@Model.Salary</p>
+    </div>
+    <a href="/Teacher/List"> &#8592; Back to all teachers</a>
 
 </body>
 </html>

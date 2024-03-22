@@ -12,10 +12,12 @@
 </head>
 <body>
     <h2>@Model.FirstName @Model.LastName</h2>
-    <p>Student Id: @Model.StudentId</p>
-    <p>Enrolled: @Model.EnrollDate</p>
-    <p>Student Number: @Model.StudentNumber</p>
-
+    <div class="show-info">
+        <p>Student Id: @Model.StudentId</p>
+        <p>Enrolled: @Model.EnrollDate</p>
+        <p>Student Number: @Model.StudentNumber</p>
+    </div>
+    <a href="/Student/List"> &#8592; Back to all students</a>
 
 </body>
 </html>

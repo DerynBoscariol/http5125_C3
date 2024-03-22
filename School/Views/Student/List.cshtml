@@ -11,21 +11,23 @@
     <title>Student List</title>
 </head>
 <body>
-    <h2>Meet Our @DateTime.Now.Year Students!</h2>
-    <h3>Search by first name or last name:</h3>
-    <form action="/Student/List" method="GET">
-        <input type="text" name="SearchKey" />
-        <button>Search</button>
-    </form>
+    <h1>Meet Our @DateTime.Now.Year Students!</h1>
+    <div id="search-bar">
+        <h3>Search by first name or last name:</h3>
+        <form action="/Student/List" method="GET">
+            <input type="text" name="SearchKey" />
+            <button>Search</button>
+        </form>
+        </div>
+        <div id="result-list">
+            @{
+                foreach (School.Models.Student Student in Model)
+                {
+                    <a href="/Student/Show/@Student.StudentId"><div class="list-item">@Student.FirstName  @Student.LastName</div></a>
+                }
 
-    @{
-        foreach (School.Models.Student Student in Model)
-        {
-            <div><a href="/Student/Show/@Student.StudentId">@Student.FirstName  @Student.LastName</a></div>
-        }
-
-    }
-
+            }
+        </div>
 
 </body>
 </html>
