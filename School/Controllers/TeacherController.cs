@@ -19,7 +19,7 @@ namespace School.Controllers
 
         /// <summary>
         /// This method navigates to and displays the teacher list view as a
-        /// webpage and allows the user  to search through a list of all the
+        /// webpage and allows the user to search through a list of all the
         /// teachers in the system
         /// </summary>
         /// <param name="SearchKey">The term the user is using to to search as a
@@ -42,24 +42,44 @@ namespace School.Controllers
         public ActionResult List(string SearchKey)
         {
            
-            //creating a new instance of the TeacherDataController
+            //Creating a new instance of the TeacherDataController
             TeacherDataController Controller = new TeacherDataController();
 
-            //connecting the Teacher model to the list and search functionality
+            //Connecting the Teacher model to the list and search functionality
             //in the TeacherDataController and assigning it to the variable
             //Teachers
             IEnumerable<Teacher> Teachers = Controller.ListTeachers(SearchKey);
 
-            //creating a ViewResultObject and rendering it based on the
+            //Creating a ViewResultObject and rendering it based on the
             //TeacherDataController and Teacher model
             return View(Teachers);
         }
 
+        /// <summary>
+        /// This method navigates to and displays a rendered webpage showing the
+        /// view of a specific teacher based on teacherId
+        /// </summary>
+        /// <param name="id">An integer representing the unique teacherId number
+        /// associated with each teacher</param>
+        /// <returns>
+        /// A dynamically rendered webpage (/views/teacher/show.cshtml)
+        /// displaying information(firstName, lastName, hireDate, employeeNumber
+        /// and salary) about a specific teacher based on the teachertId
+        /// </returns>
+        /// <example>
+        /// GET: localhost:xxxx/Teacher/Show/5 --> web page displaying Jessica
+        /// Morris Hired:6/4/2012 12:00:00 AM Employee Number:T389 Salary:$48.62
+        /// </example>
         public ActionResult Show(int id)
         {
+            //Creating a new instance of the TeacherDataController
             TeacherDataController Controller = new TeacherDataController();
+            //Connecting the Teacher model to the find teacher functionality in
+            //the TeacherDataController and assigning it to the variable
+            //SelectedTeacher
             Teacher SelectedTeacher = Controller.FindTeacher(id);
-            //should navigate to /views/teacher/show.cshtml
+            //Creating a ViewResultObject and rendering it based on the
+            //functionality the TeacherDataController and the Teacher model
             return View(SelectedTeacher);
         }
 

@@ -19,15 +19,15 @@ namespace School.Controllers
 
         /// <summary>
         /// This method navigates to and displays the student list view as a
-        /// webpage and allows the user  to search through a list of all the
+        /// webpage and allows the user to search through a list of all the
         /// students in the system
         /// </summary>
-        /// <param name="SearchKey">The term the user is using to to search as a
+        /// <param name="SearchKey">The term the user is using to search as a
         /// string</param>
         /// <returns>
         /// A dynamically rendered webpage (/views/student/list.cshtml)
-        /// displaying a search bar and a list of all students or the students
-        /// whose names match the search key
+        /// displaying a search bar and a list of all the students or the
+        /// students whose names match the search key
         /// </returns>
         /// <example>
         /// GET: localhost:xxxx/Student/List --> the search bar above a list of
@@ -42,21 +42,21 @@ namespace School.Controllers
         public ActionResult List(string SearchKey)
         {
 
-            //creating a neww instance of the StudentDataController
+            //Creating a new instance of the StudentDataController
             StudentDataController Controller = new StudentDataController();
 
-            //connecting the Student model to the list and search functionality
+            //Vonnecting the Student model to the list and search functionality
             //in the StudentDataController and assigning it to the variable
             //Students
             IEnumerable<Student> Students = Controller.ListStudents(SearchKey);
 
-            //creating a ViewResultObject and rendering it based on the
+            //Creating a ViewResultObject and rendering it based on the
             //functionality in StudentDataController and the Student model
             return View(Students);
         }
         /// <summary>
-        /// This method navigates to and displays a rendered webpage show the
-        /// view of a specific student based on studentId
+        /// This method navigates to and displays a rendered webpage view that 
+        /// shows information about a specific student based on studentId
         /// </summary>
         /// <param name="id">An integer representing the unique studentId number
         /// associated with each student</param>
@@ -66,22 +66,22 @@ namespace School.Controllers
         /// studentNumber) about a specific student based on studentId
         /// </returns>
         /// <example>
-        /// GET: localhost:xxxx/Student/Show/7 --> web page displaying Jason
+        /// GET: localhost:xxxx/Student/Show/7 --> webpage displaying Jason
         /// Freeman Student Id: 7 Enrolled: 8/16/2018 12:00:00 AM
         /// Student Number: N1694
         /// </example>
         public ActionResult Show(int id)
         {
-            //creating a new instance of the StudentDataController
+            //Creating a new instance of the StudentDataController
             StudentDataController Controller = new StudentDataController();
 
-            //connecting the Student model to the find student functionality in
+            //Connecting the Student model to the find student functionality in
             //the StudentDataController and assigning it to the variable
             //SelectedStudent
             Student SelectedStudent = Controller.FindStudent(id);
 
-            //creating a ViewResultObject and rendering it based on the
-            //functionality the StudentDataController and the Student model
+            //Creating a ViewResultObject and rendering it based on the
+            //functionality in the StudentDataController and the Student model
             return View(SelectedStudent);
         }
 

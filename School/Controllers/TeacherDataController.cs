@@ -16,25 +16,27 @@ namespace School.Controllers
     [ApiController]
     public class TeacherDataController : ControllerBase
     {
-        // Creating a context class to access database
+        // Creating a context class to access the database
         private SchoolDbContext School = new SchoolDbContext();
 
 
-        ///<summary>
-        ///This method displays information(teacherId, firstName, lastName,
-        ///employeeNumber, hireDate, and salary) about one or many teacher(s)
-        ///based on the string entered
-        ///</summary>
+        /// <summary>
+        /// This method displays information (teacherId, firstName, lastName,
+        /// employeeNumber, hireDate, and salary) about one or many teacher(s)
+        /// based on the string input as the search key
+        /// </summary>
         /// <returns>
         /// Information about the teacher(s) matching the search key
         /// </returns>
         /// <param name="SearchKey">The term the user wants to search for as a
         /// string</param>
-        /// <example>GET api/TeacherData/ListTeachers/Lin --> [{"teacherId":2,
-        /// "firstName":"Caitlin","lastName":"Cummings","employeeNumber":"T381",
-        /// "hireDate":"2014-06-10T00:00:00","salary":62.77},{"teacherId":3,
-        /// "firstName":"Linda","lastName":"Chan","employeeNumber":"T382",
-        /// "hireDate":"2015-08-22T00:00:00","salary":60.22}]</example>
+        /// <example>
+        /// GET localhost:xxxx/api/TeacherData/ListTeachers/Lin -> [{"teacherId"
+        /// :2,"firstName":"Caitlin","lastName":"Cummings","employeeNumber":
+        /// "T381","hireDate":"2014-06-10T00:00:00","salary":62.77},{"teacherId"
+        /// :3,"firstName": "Linda","lastName":"Chan","employeeNumber":"T382",
+        /// "hireDate":"2015-08-22T00:00:00","salary":60.22}]
+        /// </example>
         [HttpGet]
         [Route("api/TeacherData/ListTeachers/{SearchKey}")]
         public List<Teacher> ListTeachers(string SearchKey)
@@ -48,41 +50,41 @@ namespace School.Controllers
             //Creating a new sql command to apply to the database
             MySqlCommand command = Connection.CreateCommand();
 
-            //sql query
+            //SQL query
             string query = "Select * from teachers where teacherfname like @searchkey or teacherlname like @searchkey or salary like @searchkey";
             command.CommandText = query;
 
-            //altering the SearchKey variable so that no character in the
-            //SearchKey will be mistaken as part of the query
+            //Altering the SearchKey variable so that no character in the
+            //search key will be mistaken as part of the query
             command.Parameters.AddWithValue("@searchkey","%"+SearchKey+"%");
             command.Prepare();
 
-            //grouping results data into a variable
+            //Grouping results data into a variable
             MySqlDataReader DataResults = command.ExecuteReader();
 
-            //creating a list of Teacher objects for the teachers data
+            //Creating a list of Teacher objects to store the teachers data
             List<Teacher> TeacherData = new List<Teacher> { };
 
-            //creating a loop to populate the list
+            //Creating a loop to populate the list
             while (DataResults.Read())
             {
-                //getting the teachers first names
+                //Getting the teachers first names
                 string FirstName = DataResults["teacherfname"].ToString();
-                //getting the teachers last names
+                //Getting the teachers last names
                 string LastName = DataResults["teacherlname"].ToString();
-                //getting the teachers id numbers
+                //Getting the teachers id numbers
                 int TeacherId = Convert.ToInt32(DataResults["teacherid"]);
-                //getting the teachers employee numbers
+                //Getting the teachers employee numbers
                 string EmployeeNumber = DataResults["employeenumber"].ToString();
-                //getting the date the teachers were hired
+                //Getting the date the teachers were hired
                 DateTime HireDate = (DateTime)DataResults["hiredate"];
-                //getting the teachers salaries
+                //Getting the teachers salaries
                 decimal TeacherSalary = Convert.ToDecimal(DataResults["salary"]);
 
-                //creating a new instance of the Teacher model
+                //Creating a new instance of the Teacher model
                 Teacher NewTeacher = new Teacher();
 
-                //assiging variables to the properties of the new Teacher model
+                //Assiging variables to the properties of the new Teacher model
                 NewTeacher.FirstName = FirstName;
                 NewTeacher.LastName = LastName;
                 NewTeacher.TeacherId = TeacherId;
@@ -90,14 +92,14 @@ namespace School.Controllers
                 NewTeacher.HireDate = HireDate;
                 NewTeacher.Salary = TeacherSalary;
 
-                //adding the newTeacher object(s) to the list
+                //Adding the newTeacher object(s) to the list
                 TeacherData.Add(NewTeacher);
             }
 
-            //closing database server connection
+            //Closing the database server connection
             Connection.Close();
 
-            //returning the list of all the data
+            //Returning the list of all the data
             return TeacherData;
         }
 
@@ -105,7 +107,7 @@ namespace School.Controllers
         /// <summary>
         /// This method recieves an id number and will display information
         /// (teacherId, firstName, lastName, employeeNumber, hireDate, and
-        /// salary) on a teacher based on that id
+        /// salary) about a teacher based on that id
         /// </summary>
         /// <example>
         /// GET localhost:xxxx/api/teacherdata/findteacher/6--> {"teacherId":6,
@@ -120,7 +122,7 @@ namespace School.Controllers
         [Route("api/teacherdata/findteacher/{id}")]
         public Teacher FindTeacher(int id)
         {
-            //creating a new instance of the Teacher model
+            //Creating a new instance of the Teacher model
             Teacher SelectedTeacher = new Teacher();
 
             //Creating an instance of the database connection
@@ -129,34 +131,34 @@ namespace School.Controllers
             //Opening the connection
             Connection.Open();
 
-            //Creating a new sql command to apply to the database
+            //Creating a new SQL command to apply to the database
             MySqlCommand command = Connection.CreateCommand();
 
-            //sql query
+            //SQL query
             command.CommandText = "Select * from teachers where teacherid = "+id;
 
-            //grouping results data into a variable
+            //Grouping results data into a variable
             MySqlDataReader TeacherResult = command.ExecuteReader();
 
-            //creating a while loop to read through sql results
+            //Creating a while loop to read through SQL results
 
             while (TeacherResult.Read())
             {
-                //accessing information through database column names:
-                //getting the teachers id number
+             //Accessing information through database column names:
+                //Getting the teachers id number
                 int TeacherId = Convert.ToInt32(TeacherResult["teacherid"]);
-                //getting the teachers first name
+                //Getting the teachers first name
                 string FirstName = TeacherResult["teacherfname"].ToString();
-                //getting the teachers last name
+                //Getting the teachers last name
                 string LastName = TeacherResult["teacherlname"].ToString();
-                //getting the teachers employee number
+                //Getting the teachers employee number
                 string EmployeeNumber = TeacherResult["employeenumber"].ToString();
-                //getting the date the teacher was hired
+                //Getting the date the teacher was hired
                 DateTime HireDate = (DateTime)TeacherResult["hiredate"];
-                //getting the teachers salary
+                //Getting the teachers salary
                 decimal TeacherSalary = Convert.ToDecimal(TeacherResult["salary"]);
 
-                //assigning the variables to the properties of the Teacher model
+                //Assigning the variables to the properties of the Teacher model
                 SelectedTeacher.TeacherId = TeacherId;
                 SelectedTeacher.FirstName = FirstName;
                 SelectedTeacher.LastName = LastName;
@@ -164,10 +166,10 @@ namespace School.Controllers
                 SelectedTeacher.HireDate = HireDate;
                 SelectedTeacher.Salary = TeacherSalary;
             }
-            //closing database server connection
+            //Closing the database server connection
             Connection.Close();
 
-            //returning an instance of the Teacher model populated with the data
+            //Returning an instance of the Teacher model populated with the data
             //from the teacher searched for
             return SelectedTeacher;
         }

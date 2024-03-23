@@ -37,7 +37,7 @@ namespace School.Models
         /// <returns>A MySqlConnection Object</returns>
         public MySqlConnection AccessDatabase()
         {
-            //initializing the MySqlConnection Class to create an object
+            //Initializing the MySqlConnection Class to create an object
             return new MySqlConnection(ConnectionString);
         }
     }
