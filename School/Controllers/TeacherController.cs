@@ -83,6 +83,66 @@ namespace School.Controllers
             return View(SelectedTeacher);
         }
 
+
+        // GET : Teacher/New -> a webpage asking the user to input information
+        // about a new teacher
+
+        public ActionResult New()
+        {
+            //navigate to /Views/Teacher/New.cshtml
+            return View();
+        }
+
+        //POST : Teacher/Create -- redirects to the list teachers page
+        [HttpPost]
+        public ActionResult Create(string FirstName, string LastName, string
+            EmployeeNumber, decimal Salary)
+        {
+            Debug.WriteLine("Form submission received");
+            Debug.WriteLine(FirstName);
+            Debug.WriteLine(LastName);
+
+            Teacher NewTeacher = new Teacher();
+            NewTeacher.FirstName = FirstName;
+            NewTeacher.LastName = LastName;
+            NewTeacher.EmployeeNumber = EmployeeNumber;
+            NewTeacher.Salary = Salary;
+
+            TeacherDataController TeacherController = new TeacherDataController();
+
+            TeacherController.AddTeacher(NewTeacher);
+
+            return RedirectToAction("List");
+        }
+
+        // GET : /Teacher/ConfirmRemove/{id} --> webpage confirming that the user would
+        // like to remove that teacher
+        public ActionResult ConfirmRemove(int id)
+        {
+            // Retrieving teacher information
+            TeacherDataController DataController = new TeacherDataController();
+
+            Teacher SelectedTeacher = DataController.FindTeacher(id);
+
+            //Displaying information to confirm this is the teacher the user
+            //wants to remove
+
+            // Navigate to /Views/Teacher/Remove.cshtml
+            return View(SelectedTeacher);
+        }
+
+        // POST : /Teacher/Remove/{id} --> redirects to list of teachers
+        public ActionResult Remove(int id)
+        {
+            Debug.WriteLine(id);
+
+            TeacherDataController DataController = new TeacherDataController();
+
+            DataController.RemoveTeacher(id);
+
+            return RedirectToAction("List");
+        }
+
     }
 }
 

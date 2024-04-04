@@ -173,5 +173,94 @@ namespace School.Controllers
             //from the teacher searched for
             return SelectedTeacher;
         }
+
+        //Add Teacher Method
+        /// <summary>
+        /// Recieves Teacher information and adds it to the database
+        /// </summary>
+        /// <returns>
+        /// string "New teacher has been added"
+        /// </returns>
+        /// <example>
+        /// POST localhost:xxxx/api/teacherdata/addteacher
+        /// FORM DATA / POST DATA / REQUEST BODY
+        /// {
+        ///     "FirstName" : "Alex"
+        ///     "LastName" : "Turner"
+        ///     "EmployeeNumber" : "T365"
+        ///     "HireDate" : "2024-04-03 00:00:00"
+        ///     "Salary" : "57.83"
+        /// }
+        /// </example>
+        [HttpPost]
+        [Route("api/teacherdata/AddTeacher")]
+        public string AddTeacher([FromBody]Teacher NewTeacher)
+        {
+            
+            MySqlConnection Connect = School.AccessDatabase();
+
+            Connect.Open();
+            MySqlCommand Command = Connect.CreateCommand();
+
+            string query = "insert into teachers (teacherfname, teacherlname, " +
+                "employeenumber, hiredate, salary) values(@FirstName,@LastName," +
+                "@EmployeeNumber,CURRENT_DATE(),@Salary)";
+            Command.CommandText = query;
+            Command.Parameters.AddWithValue
+                ("@FirstName", NewTeacher.FirstName);
+            Command.Parameters.AddWithValue
+                ("@LastName", NewTeacher.LastName);
+            Command.Parameters.AddWithValue
+                ("@EmployeeNumber", NewTeacher.EmployeeNumber);
+            Command.Parameters.AddWithValue
+                ("@Salary", NewTeacher.Salary);
+
+            Command.Prepare();
+            //Execute query
+            Command.ExecuteNonQuery();
+
+            Connect.Close();
+
+            return "A new teacher has been added to the database under the name"
+                +NewTeacher.FirstName + " " +NewTeacher.LastName;
+        }
+
+        /// <summary>
+        /// Recieves a teacher id and deletes all corresponding data in the
+        /// database
+        /// </summary>
+        /// <param name="TeacherId">The id of the teacher the user wamts to remove</param>
+        /// <returns>
+        /// Success message
+        /// </returns>
+        /// <example>
+        /// POST : api/teacherdata/removeteacher/11 --> "Teacher has been
+        /// successfully removed"
+        /// </example>
+        [HttpPost]
+        [Route("api/TeacherData/RemoveTeacher/{TeacherId}")]
+        public string RemoveTeacher(int TeacherId)
+        {
+            MySqlConnection Connect = School.AccessDatabase();
+
+            Connect.Open();
+            
+            //SQL command
+            string query = "delete from teachers where teacherid=@teacherid";
+
+            MySqlCommand Command = Connect.CreateCommand();
+            Command.CommandText = query;
+
+            Command.Parameters.AddWithValue("@teacherid", TeacherId);
+
+            Command.Prepare();
+
+            Command.ExecuteNonQuery();
+
+            Connect.Close();
+
+            return "Teacher has been successfully removed";
+        }
+
     }
 }

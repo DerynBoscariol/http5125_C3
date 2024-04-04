@@ -48,3 +48,7 @@ button.accept-policy[b-xc785294hy] {
   line-height: 60px;
 }
 
+#add-new[b-xc785294hy] {
+    width:fit-content;
+    height:fit-content;
+}

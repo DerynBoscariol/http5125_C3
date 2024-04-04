@@ -19,4 +19,10 @@
     <Folder Include="Views\Teacher\" />
     <Folder Include="Views\Student\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\js\TeacherFormValidation.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\js\TeacherFormValidation.js" />
+  </ItemGroup>
 </Project>

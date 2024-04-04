@@ -107,3 +107,42 @@ footer {
 #check-us-out {
     margin-top:2em;
 }
+
+#error-firstName, #error-lastName, #error-employeeNum, #error-salary {
+    display: none;
+}
+
+#delete-teacher {
+    padding: 1em;
+    margin: 2em;
+    background-color: #EE5A70;
+    border-radius: 15px;
+    border-style: solid;
+    max-width: fit-content;
+}
+
+#delete-teacher a {
+    text-decoration: none;
+    color: black;
+}
+
+#delete-teacher:hover {
+    text-decoration: underline;
+    background-color: #b93044;
+}
+
+#confirm-remove {
+    margin-bottom: 15px;
+    background-color: #EE5A70;
+    border: 1px solid black;
+}
+
+.red {
+    color: red;
+}
+
+.form {
+    display: flex;
+    flex-flow: column;
+    gap: 1em;
+}

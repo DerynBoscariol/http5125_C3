@@ -1,0 +1,17 @@
+@model School.Models.Teacher
+@{
+    ViewBag.Title = "ConfirmRemove";
+}
+
+<h1>Are you sure you want to remove this teacher?</h1>
+
+<h2>@Model.FirstName @Model.LastName</h2>
+
+<p><span class="red">WARNING!</span> This action cannot be undone</p>
+
+<form action="/Teacher/Remove/@Model.TeacherId" method="POST">
+
+    <input id="confirm-remove" type="submit" value="Remove Teacher" />
+</form>
+
+<a href="/Teacher/List"> &#8592; Back to all teachers</a>
