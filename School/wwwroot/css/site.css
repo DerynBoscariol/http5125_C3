@@ -39,7 +39,7 @@ button {
     border-style:solid;
     border-color: gray;
     border-radius: 10px;
-    color:gray;
+    color:black;
     border-width: 1px;
 }
 
@@ -145,4 +145,29 @@ footer {
     display: flex;
     flex-flow: column;
     gap: 1em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+#add-new-link {
+    padding: 1em;
+    margin: 2em;
+    background-color: #99D3A0;
+    border-radius: 15px;
+    border: 1px solid black;
+    max-width: fit-content;
+    
+}
+
+#add-new-link a {
+    text-decoration: none;
+    color: black;
+}
+
+#add-new-link:hover {
+    background-color: #84BA8A;
+}
+
+#add-new-link a:hover {
+    text-decoration: underline;
 }

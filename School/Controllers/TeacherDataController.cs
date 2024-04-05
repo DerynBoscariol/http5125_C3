@@ -179,7 +179,7 @@ namespace School.Controllers
         /// Recieves Teacher information and adds it to the database
         /// </summary>
         /// <returns>
-        /// string "New teacher has been added"
+        /// concated success message
         /// </returns>
         /// <example>
         /// POST localhost:xxxx/api/teacherdata/addteacher
@@ -196,16 +196,20 @@ namespace School.Controllers
         [Route("api/teacherdata/AddTeacher")]
         public string AddTeacher([FromBody]Teacher NewTeacher)
         {
-            
+            //Creating an instance of the database connection and opening it
             MySqlConnection Connect = School.AccessDatabase();
-
             Connect.Open();
+
+            //Creating a command to apply to the database
             MySqlCommand Command = Connect.CreateCommand();
 
+            //SQL query
             string query = "insert into teachers (teacherfname, teacherlname, " +
                 "employeenumber, hiredate, salary) values(@FirstName,@LastName," +
                 "@EmployeeNumber,CURRENT_DATE(),@Salary)";
             Command.CommandText = query;
+
+            //Adding each parameter with the value
             Command.Parameters.AddWithValue
                 ("@FirstName", NewTeacher.FirstName);
             Command.Parameters.AddWithValue
@@ -214,13 +218,15 @@ namespace School.Controllers
                 ("@EmployeeNumber", NewTeacher.EmployeeNumber);
             Command.Parameters.AddWithValue
                 ("@Salary", NewTeacher.Salary);
-
             Command.Prepare();
+
             //Execute query
             Command.ExecuteNonQuery();
 
+            //Closing the server database connection
             Connect.Close();
 
+            //Returning concated success statement
             return "A new teacher has been added to the database under the name"
                 +NewTeacher.FirstName + " " +NewTeacher.LastName;
         }
@@ -241,24 +247,27 @@ namespace School.Controllers
         [Route("api/TeacherData/RemoveTeacher/{TeacherId}")]
         public string RemoveTeacher(int TeacherId)
         {
-            MySqlConnection Connect = School.AccessDatabase();
 
+            //Creating a connection between the server and database and opening that connection
+            MySqlConnection Connect = School.AccessDatabase();
             Connect.Open();
             
-            //SQL command
+            //Creating an SQL command
             string query = "delete from teachers where teacherid=@teacherid";
-
             MySqlCommand Command = Connect.CreateCommand();
             Command.CommandText = query;
 
+            //Adding TeacherId parameter with value
             Command.Parameters.AddWithValue("@teacherid", TeacherId);
 
+            //Preparing and executing the command
             Command.Prepare();
-
             Command.ExecuteNonQuery();
 
+            //Closing the server database connection
             Connect.Close();
 
+            //Returning a success statement
             return "Teacher has been successfully removed";
         }
 

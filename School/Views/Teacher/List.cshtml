@@ -12,24 +12,24 @@
 </head>
 <body>
     <h1>Meet Our @DateTime.Now.Year Teachers!</h1>
-    <div>
-        <a href="/Teacher/New">Add a new teacher to the school!</a>
-    </div>
-   <div id="search-bar">
-       <h3>Search by first name, last name or salary:</h3>
+    <div id="search-bar">
+        <h3>Search by first or last name:</h3>
         <form action="/Teacher/List" method="GET">
             <input type="text" name="SearchKey" />
             <button>Search</button>
         </form>
     </div>
     <div id="result-list">
-    @{
-        foreach (School.Models.Teacher Teacher in Model)
-        {
-           <a href="/Teacher/Show/@Teacher.TeacherId"><div class="list-item">@Teacher.FirstName  @Teacher.LastName</div></a>
-        }
+        @{
+            foreach (School.Models.Teacher Teacher in Model)
+            {
+                <a href="/Teacher/Show/@Teacher.TeacherId"><div class="list-item">@Teacher.FirstName  @Teacher.LastName</div></a>
+            }
 
-    }
+        }
+    </div>
+    <div id="add-new-link">
+        &#43;<a href="/Teacher/New">Add a new teacher to the school!</a>
     </div>
 
 </body>
