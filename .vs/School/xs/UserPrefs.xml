@@ -5,18 +5,30 @@
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workbench ActiveDocument="School/Controllers/TeacherDataController.cs">
     <Files>
-      <File FileName="School/Controllers/TeacherDataController.cs" Line="48" Column="1" />
-      <File FileName="School/Controllers/StudentDataController.cs" />
-      <File FileName="School/Controllers/TeacherController.cs" />
-      <File FileName="School/Controllers/StudentController.cs" />
-      <File FileName="School/Models/SchoolDbContext.cs" />
+      <File FileName="School/Controllers/TeacherDataController.cs" Line="220" Column="48" />
+      <File FileName="School/Controllers/TeacherController.cs" Line="196" Column="61" />
+      <File FileName="School/Views/Teacher/New.cshtml" Line="25" Column="64" />
+      <File FileName="School/EmptyJSFile.js" Line="45" Column="5" />
+      <File FileName="School/wwwroot/css/site.css" Line="167" Column="22" />
+      <File FileName="School/Models/Teacher.cs" Line="9" Column="37" />
+      <File FileName="School/Views/Teacher/List.cshtml" Line="16" Column="41" />
+      <File FileName="School/Views/Teacher/Show.cshtml" Line="24" Column="5" />
+      <File FileName="School/Views/Teacher/Remove.cshtml" Line="9" Column="1" />
+      <File FileName="School/wwwroot/js/site.js" Line="6" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="School">
-            <Node name="School" expanded="True">
-              <Node name="Controllers" expanded="True" />
+            <Node name="School">
+              <Node name="Controllers" expanded="True">
+                <Node name="TeacherDataController.cs" selected="True" />
+              </Node>
+              <Node name="Models" expanded="True" />
+              <Node name="wwwroot" expanded="True">
+                <Node name="css" expanded="True" />
+                <Node name="js" expanded="True" />
+              </Node>
             </Node>
           </Node>
         </State>

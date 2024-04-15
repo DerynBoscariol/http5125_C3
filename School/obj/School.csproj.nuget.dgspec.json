@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/derynboscariol/Desktop/School/HTTP5125BackEnd/Projects/School_C2/School/School.csproj": {}
+    "/Users/derynboscariol/Desktop/School/HTTP5125BackEnd/Projects/School_C3/School/School.csproj": {}
   },
   "projects": {
-    "/Users/derynboscariol/Desktop/School/HTTP5125BackEnd/Projects/School_C2/School/School.csproj": {
+    "/Users/derynboscariol/Desktop/School/HTTP5125BackEnd/Projects/School_C3/School/School.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/derynboscariol/Desktop/School/HTTP5125BackEnd/Projects/School_C2/School/School.csproj",
+        "projectUniqueName": "/Users/derynboscariol/Desktop/School/HTTP5125BackEnd/Projects/School_C3/School/School.csproj",
         "projectName": "School",
-        "projectPath": "/Users/derynboscariol/Desktop/School/HTTP5125BackEnd/Projects/School_C2/School/School.csproj",
+        "projectPath": "/Users/derynboscariol/Desktop/School/HTTP5125BackEnd/Projects/School_C3/School/School.csproj",
         "packagesPath": "/Users/derynboscariol/.nuget/packages/",
-        "outputPath": "/Users/derynboscariol/Desktop/School/HTTP5125BackEnd/Projects/School_C2/School/obj/",
+        "outputPath": "/Users/derynboscariol/Desktop/School/HTTP5125BackEnd/Projects/School_C3/School/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/derynboscariol/.nuget/NuGet/NuGet.Config"

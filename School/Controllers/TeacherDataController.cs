@@ -271,5 +271,54 @@ namespace School.Controllers
             return "Teacher has been successfully removed";
         }
 
+
+        /// <summary>
+        /// Receive a teacher id and update teacher information and the
+        /// corresponding data in the database
+        /// </summary>
+        /// <example>
+        /// POST : api/TeacherData/UpdateTeacher/{TeacherId}
+        ///  FORM DATA / POST DATA / REQUEST BODY
+        /// {
+        ///     "FirstName" : "Deryn"
+        ///     "LastName" : "Boscariol"
+        ///     "EmployeeNumber" : "T458"
+        ///     "HireDate" : "2024-04-14 00:00:00"
+        ///     "Salary" : "50.75"
+        /// }
+        /// </example>
+        /// <returns>Updated teacher object</returns>
+        [HttpPost]
+        [Route("api/TeacherData/UpdateTeacher/{TeacherId}")]
+        public string UpdateTeacher(int TeacherId, [FromBody]Teacher UpdatedTeacher)
+        {
+            //Creating a connection between the server and database and opening that connection
+            MySqlConnection Connect = School.AccessDatabase();
+            Connect.Open();
+
+            //Creating an SQL command
+            string query = "update teachers set teacherfname=@FirstName, " +
+                "teacherlname=@LastName, employeenumber=@EmployeeNumber, " +
+                 "salary=@Salary where teacherid=@TeacherId";
+            MySqlCommand Command = Connect.CreateCommand();
+            Command.CommandText = query;
+
+            //Adding Teacher object parameters with value
+            Command.Parameters.AddWithValue("@FirstName", UpdatedTeacher.FirstName);
+            Command.Parameters.AddWithValue("@LastName", UpdatedTeacher.LastName);
+            Command.Parameters.AddWithValue("@EmployeeNumber", UpdatedTeacher.EmployeeNumber);
+            Command.Parameters.AddWithValue("@Salary", UpdatedTeacher.Salary);
+            Command.Parameters.AddWithValue("@TeacherId", TeacherId);
+
+            //Preparing and executing the command
+            Command.Prepare();
+            Command.ExecuteNonQuery();
+
+            //Closing the server database connection
+            Connect.Close();
+
+            return UpdatedTeacher.FirstName + " " + UpdatedTeacher.LastName +
+                " has been updated " +UpdatedTeacher;
+        }
     }
 }

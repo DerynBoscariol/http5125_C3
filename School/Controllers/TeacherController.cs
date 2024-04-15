@@ -206,6 +206,39 @@ namespace School.Controllers
             return RedirectToAction("List");
         }
 
+        // GET: /Teacher/Update/{TeacherId}
+
+        public ActionResult Update(int id)
+        {
+            //Gathher information about the selected teacher
+            TeacherDataController Controller = new TeacherDataController();
+
+            Teacher SelectedTeacher = Controller.FindTeacher(id);
+
+            //Present information to the user to update
+            //Direct to /Views/Teacher/Update.cshtml
+            return View(SelectedTeacher);
+        }
+
+        // POST: /Teacher/Edit/{id}
+        [HttpPost]
+        public ActionResult Edit(int id, string FirstName, string LastName, string
+            EmployeeNumber, decimal Salary)
+        {
+            //Use data access component to update the teacher in the database
+
+            Teacher UpdatedTeacher = new Teacher();
+            UpdatedTeacher.FirstName = FirstName;
+            UpdatedTeacher.LastName = LastName;
+            UpdatedTeacher.EmployeeNumber = EmployeeNumber;
+            UpdatedTeacher.Salary = Salary;
+
+            TeacherDataController Controller = new TeacherDataController();
+            Controller.UpdateTeacher(id, UpdatedTeacher);
+
+            //Redirect to /Teacher/Show/{id}
+            return Redirect("/Teacher/Show/"+id);
+        }
     }
 }
 
