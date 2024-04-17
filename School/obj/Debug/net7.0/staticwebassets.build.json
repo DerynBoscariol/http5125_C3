@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tPPCekM4xr/OZFIsIFyv+CEyX6R5yMIdeLJ4+5ELrBE=",
+  "Hash": "FnQD8RDHqEPiyQM2FnVVGtEws4F4zeCg4fG7B9K5Xjc=",
   "Source": "School",
   "BasePath": "_content/School",
   "Mode": "Default",
@@ -100,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/js/site.js"
+    },
+    {
+      "Identity": "/Users/derynboscariol/Desktop/School/HTTP5125BackEnd/Projects/School_C3/School/wwwroot/js/TeacherUpdateValidation.js",
+      "SourceId": "School",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/derynboscariol/Desktop/School/HTTP5125BackEnd/Projects/School_C3/School/wwwroot/",
+      "BasePath": "_content/School",
+      "RelativePath": "js/TeacherUpdateValidation.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/TeacherUpdateValidation.js"
     },
     {
       "Identity": "/Users/derynboscariol/Desktop/School/HTTP5125BackEnd/Projects/School_C3/School/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css",

@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets/favicon.ico"
     },
     {
+      "Id": "/Users/derynboscariol/Desktop/School/HTTP5125BackEnd/Projects/School_C3/School/wwwroot/js/TeacherUpdateValidation.js",
+      "PackagePath": "staticwebassets/js/TeacherUpdateValidation.js"
+    },
+    {
       "Id": "/Users/derynboscariol/Desktop/School/HTTP5125BackEnd/Projects/School_C3/School/wwwroot/js/site.js",
       "PackagePath": "staticwebassets/js/site.js"
     },

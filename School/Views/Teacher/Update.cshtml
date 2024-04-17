@@ -3,27 +3,44 @@
     ViewBag.Title = "Update";
 }
 
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript" src="../../js/TeacherUpdateValidation.js"></script>
+    <title>Update Teacher</title>
+</head>
+<body>
+
 <h1>Update Teacher</h1>
 
-<form method="post" action="/Teacher/Edit/@Model.TeacherId">
+<form class="form" name="UpdateTeacher" method="POST" action="/Teacher/Edit/@Model.TeacherId">
     <div>
         <label for="FirstName">First Name:</label>
-        <input type="text" name="FirstName" id="FirstName" value="@Model.FirstName"/>
+        <input type="text" name="FirstName" id="FirstName" value="@Model.FirstName" required/>
+        <div id="error-firstName">Please enter a first name!</div>
     </div>
     <div>
         <label for="LastName">Last Name:</label>
-        <input type="text" name="LastName" id="LastName" value="@Model.LastName"/>
+        <input type="text" name="LastName" id="LastName" value="@Model.LastName"required />
+        <div id="error-lastName">Please enter a last name!</div>
     </div>
     <div>
         <label for="EmployeeNumber">Employee #:</label>
-        <input type="text" name="EmployeeNumber" id="EmployeeNumber" value="@Model.EmployeeNumber"/>
+        <input type="text" name="EmployeeNumber" id="EmployeeNumber" value="@Model.EmployeeNumber"required />
+        <div id="error-employeeNum">Please enter an employee number!</div>
     </div>
     <div>
         <label for="Salary">Salary: $</label>
-        <input type="number" min="0" step="any" name="Salary" id="Salary" value="@Model.Salary"/>
+        <input type="number" min="0" step="any" name="Salary" id="Salary" value="@Model.Salary"required />
+        <div id="error-salary">Please enter a salary!</div>
     </div>
     <div>
         <button id="update" type="submit" value="Update Teacher">Update Teacher</button>
     </div>
 
 </form>
+
+</body>
+</html>

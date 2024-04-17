@@ -17,22 +17,22 @@
     <form class="form" name="NewTeacher" method="POST" action="/Teacher/Create">
         <div>
             <label for="FirstName">First Name:</label>
-            <input type="text" name="FirstName" id="FirstName" />
+            <input type="text" name="FirstName" id="FirstName" required/>
             <div id="error-firstName">Please enter a first name!</div>
         </div>
         <div>
             <label for="LastName">Last Name:</label>
-            <input type="text" name="LastName" id="LastName" />
+            <input type="text" name="LastName" id="LastName" required/>
             <div id="error-lastName">Please enter a last name!</div>
         </div>
         <div>
             <label for="EmployeeNumber">Employee #:</label>
-            <input type="text" name="EmployeeNumber" id="EmployeeNumber" />
+            <input type="text" name="EmployeeNumber" id="EmployeeNumber" required/>
             <div id="error-employeeNum">Please enter an employee number!</div>
         </div>
         <div>
             <label for="Salary">Salary: $</label>
-            <input type="number" min="0" step="any" name="Salary" id="Salary" />
+            <input type="number" min="0" step="any" name="Salary" id="Salary" required/>
             <div id="error-salary">Please enter a salary!</div>
         </div>
         <div>
