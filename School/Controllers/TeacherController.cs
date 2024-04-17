@@ -152,15 +152,19 @@ namespace School.Controllers
         }
 
         /// <summary>
-        /// This method navigates to a webpage confirming that the user would like to remove the teacher they have selected
+        /// This method navigates to a webpage confirming that the user would
+        /// like to remove the teacher they have selected
         /// </summary>
         /// <param name="id">An integer representing the id of the teacher
         /// selected to be removed</param>
         /// <returns>
-        /// A dynamically rendered webpage(/Teacher/ConfirmRemove/{id}) displaying the name of the teacher selected by their id and 
+        /// A dynamically rendered webpage(/Teacher/ConfirmRemove/{id}) displaying
+        /// the name of the teacher selected by their id and asking if the user
+        /// is sure they'd like to remove that teacher
         /// </returns>
         /// <example>
-        /// GET : /Teacher/ConfirmRemove/8 --> webpage confirming that the user would like to remove Dana Ford
+        /// GET : /Teacher/ConfirmRemove/8 --> webpage confirming that the user
+        /// would like to remove Dana Ford
         /// </example>
         public ActionResult ConfirmRemove(int id)
         {
@@ -207,12 +211,27 @@ namespace School.Controllers
         }
 
         // GET: /Teacher/Update/{TeacherId}
-
+        /// <summary>
+        /// This method navigates to a webpage where a user can update
+        /// information about a given teacher
+        /// </summary>
+        /// <param name="id">An integer representing the id of the teacher
+        /// selected to be updated</param>
+        /// <returns>
+        /// A dynamically rendered webpage(/Teacher/Update/{id}) displaying a
+        /// form prefilled with the selected teachers information that the user
+        /// can update
+        /// </returns>
+        /// <example>
+        /// GET : /Teacher/Update/8 --> webpage with a form prefilled with Dana
+        /// Ford's current information
+        /// </example>
         public ActionResult Update(int id)
         {
-            //Gathher information about the selected teacher
+            //Create a new instance of the TeacherDataController
             TeacherDataController Controller = new TeacherDataController();
 
+            //Using the FindTeacher method to select a teacher with the provided id
             Teacher SelectedTeacher = Controller.FindTeacher(id);
 
             //Present information to the user to update
@@ -226,17 +245,22 @@ namespace School.Controllers
             EmployeeNumber, decimal Salary)
         {
             //Use data access component to update the teacher in the database
-
+            //Creating a new instance of the Teacher object model
             Teacher UpdatedTeacher = new Teacher();
+            //Assigning the properties inputted by the user to the new
+            //UpdatedTeacher object
             UpdatedTeacher.FirstName = FirstName;
             UpdatedTeacher.LastName = LastName;
             UpdatedTeacher.EmployeeNumber = EmployeeNumber;
             UpdatedTeacher.Salary = Salary;
 
+            //Creating a new instance of the TeacherDataController
             TeacherDataController Controller = new TeacherDataController();
+            //Using the UpdateTeacher method to replace the teacher associated
+            //with the selected id with the new UpdatedTeacher object
             Controller.UpdateTeacher(id, UpdatedTeacher);
 
-            //Redirect to /Teacher/Show/{id}
+            //Redirect to /Teacher/Show/{id} to show the updated information
             return Redirect("/Teacher/Show/"+id);
         }
     }

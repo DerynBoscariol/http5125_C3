@@ -271,20 +271,22 @@ namespace School.Controllers
             return "Teacher has been successfully removed";
         }
 
-
+        /// POST : api/TeacherData/UpdateTeacher/{TeacherId}
         /// <summary>
-        /// Receive a teacher id and update teacher information and the
+        /// Receive a teacher id and updates the teachers information and the
         /// corresponding data in the database
         /// </summary>
+        /// <param name="TeacherId"> The id of the teacher the user wants to update</param>
+        /// <param name="UpdatedTeacher"> The Teacher object containing the information updated by the user</param>
         /// <example>
-        /// POST : api/TeacherData/UpdateTeacher/{TeacherId}
+        /// POST : api/TeacherData/UpdateTeacher/6
         ///  FORM DATA / POST DATA / REQUEST BODY
         /// {
-        ///     "FirstName" : "Deryn"
-        ///     "LastName" : "Boscariol"
-        ///     "EmployeeNumber" : "T458"
-        ///     "HireDate" : "2024-04-14 00:00:00"
-        ///     "Salary" : "50.75"
+        ///     "FirstName" : "Thomas"
+        ///     "LastName" : "Hawkins"
+        ///     "EmployeeNumber" : "T393"
+        ///     "HireDate" : "2016-08-10 00:00:00"
+        ///     "Salary" : "54.45"
         /// }
         /// </example>
         /// <returns>Updated teacher object</returns>
