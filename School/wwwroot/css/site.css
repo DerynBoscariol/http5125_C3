@@ -171,3 +171,23 @@ footer {
 #add-new-link a:hover {
     text-decoration: underline;
 }
+
+
+#update-teacher {
+    padding: 1em;
+    margin: 2em;
+    background-color: #F5E557;
+    border-radius: 15px;
+    border-style: solid;
+    max-width: fit-content;
+}
+
+#update-teacher a {
+    text-decoration: none;
+    color: black;
+}
+
+#update-teacher:hover {
+    text-decoration: underline;
+    background-color: #ACA351;
+}
